@@ -9,10 +9,10 @@ services:
             MINIO_ACCESS_KEY: $$cap_access_key
             MINIO_SECRET_KEY: $$cap_secret_key
         caproverExtra:
-            containerHttpPort: '9000'
+            containerHttpPort: '9001'
             dockerfileLines:
                 - FROM minio/minio:$$cap_minio_version
-                - CMD ["minio", "server", "/data"]
+                - CMD ["server", "/data", "--console-address", ":9001"]
 caproverOneClickApp:
     variables:
         - id: $$cap_minio_version
